@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EduPro - Modern Online Learning Platform</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = { darkMode: 'class', theme: { extend: { colors: { primary: '#4F46E5' } } } }
+    </script>
+    <!-- FontAwesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body class="bg-gray-50 dark:bg-gray-900 transition-colors duration-300">
+
+    <!-- Navbar -->
+    <nav class="bg-white dark:bg-gray-800 shadow-sm fixed w-full z-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between h-16">
+                <div class="flex items-center">
+                    <a href="index.html" class="flex-shrink-0 flex items-center gap-2">
+                        <i class="fas fa-graduation-cap text-3xl text-primary"></i>
+                        <span class="font-bold text-2xl tracking-tight text-gray-900 dark:text-white">EduPro</span>
+                    </a>
+                    <div class="hidden md:ml-6 md:flex md:space-x-8">
+                        <a href="index.html" class="text-primary font-medium px-3 py-2 rounded-md">Home</a>
+                        <a href="courses.html" class="text-gray-500 dark:text-gray-300 hover:text-primary px-3 py-2 rounded-md transition">Courses</a>
+                        <a href="#" class="text-gray-500 dark:text-gray-300 hover:text-primary px-3 py-2 rounded-md transition">Instructors</a>
+                        <a href="#" class="text-gray-500 dark:text-gray-300 hover:text-primary px-3 py-2 rounded-md transition">Blog</a>
+                    </div>
+                </div>
+                <div class="flex items-center gap-4">
+                    <!-- Dark Mode Toggle -->
+                    <button id="theme-toggle" class="text-gray-500 dark:text-yellow-400 focus:outline-none">
+                        <i class="fas fa-moon dark:hidden"></i>
+                        <i class="fas fa-sun hidden dark:block"></i>
+                    </button>
+                    <!-- Auth Buttons -->
+                    <a href="dashboard.html" class="hidden md:inline-flex items-center justify-center px-4 py-2 border border-transparent text-sm font-medium rounded-md text-white bg-primary hover:bg-indigo-700 shadow-lg shadow-indigo-500/50 transition">
+                        Get Started
+                    </a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="pt-32 pb-20 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto flex flex-col-reverse lg:flex-row items-center gap-12">
+        <div class="lg:w-1/2 text-center lg:text-left fade-in">
+            <h1 class="text-4xl md:text-6xl font-extrabold text-gray-900 dark:text-white mb-6">
+                Unlock Your Potential with <span class="text-transparent bg-clip-text bg-gradient-to-r from-indigo-500 to-purple-600">EduPro Learning</span>
+            </h1>
+            <p class="text-lg text-gray-600 dark:text-gray-300 mb-8 leading-relaxed">
+                Discover over 10,000+ courses from top instructors. Learn skills in Tech, Design, Business, and more with real-time AI recommendations.
+            </p>
+            <div class="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start">
+                <a href="courses.html" class="px-8 py-3 bg-primary text-white font-bold rounded-full shadow-lg hover:shadow-xl hover:-translate-y-1 transition">Browse Courses</a>
+                <a href="#" class="px-8 py-3 bg-white dark:bg-gray-800 text-gray-900 dark:text-white border border-gray-200 dark:border-gray-700 font-bold rounded-full hover:bg-gray-50 dark:hover:bg-gray-700 transition flex items-center justify-center gap-2">
+                    <i class="fas fa-play-circle text-primary"></i> Watch Demo
+                </a>
+            </div>
+            <div class="mt-8 flex items-center justify-center lg:justify-start gap-6 text-gray-500 dark:text-gray-400">
+                <div class="flex -space-x-2">
+                    <img class="w-10 h-10 rounded-full border-2 border-white" src="https://i.pravatar.cc/100?img=1" alt="">
+                    <img class="w-10 h-10 rounded-full border-2 border-white" src="https://i.pravatar.cc/100?img=2" alt="">
+                    <img class="w-10 h-10 rounded-full border-2 border-white" src="https://i.pravatar.cc/100?img=3" alt="">
+                </div>
+                <p><span class="font-bold text-gray-900 dark:text-white">15k+</span> Students Enrolled</p>
+            </div>
+        </div>
+        <div class="lg:w-1/2 relative fade-in">
+            <div class="absolute -inset-4 bg-gradient-to-r from-blue-600 to-purple-600 rounded-full blur-2xl opacity-20"></div>
+            <img src="https://images.unsplash.com/photo-1522202176988-66273c2fd55f?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80" alt="Students Learning" class="relative rounded-2xl shadow-2xl">
+        </div>
+    </section>
+
+    <!-- Features -->
+    <section class="py-16 bg-white dark:bg-gray-800">
+        <div class="max-w-7xl mx-auto px-4">
+            <div class="grid md:grid-cols-3 gap-8 text-center">
+                <div class="p-6 rounded-xl bg-gray-50 dark:bg-gray-700 hover-scale">
+                    <div class="w-14 h-14 bg-indigo-100 dark:bg-indigo-900 rounded-lg flex items-center justify-center mx-auto mb-4 text-primary text-2xl"><i class="fas fa-video"></i></div>
+                    <h3 class="text-xl font-bold dark:text-white mb-2">Live Zoom Classes</h3>
+                    <p class="text-gray-600 dark:text-gray-300">Interact with instructors in real-time with our integrated HD live streaming.</p>
+                </div>
+                <div class="p-6 rounded-xl bg-gray-50 dark:bg-gray-700 hover-scale">
+                    <div class="w-14 h-14 bg-green-100 dark:bg-green-900 rounded-lg flex items-center justify-center mx-auto mb-4 text-green-600 text-2xl"><i class="fas fa-brain"></i></div>
+                    <h3 class="text-xl font-bold dark:text-white mb-2">AI Recommendations</h3>
+                    <p class="text-gray-600 dark:text-gray-300">Our AI analyzes your learning style to suggest the perfect path for you.</p>
+                </div>
+                <div class="p-6 rounded-xl bg-gray-50 dark:bg-gray-700 hover-scale">
+                    <div class="w-14 h-14 bg-yellow-100 dark:bg-yellow-900 rounded-lg flex items-center justify-center mx-auto mb-4 text-yellow-600 text-2xl"><i class="fas fa-certificate"></i></div>
+                    <h3 class="text-xl font-bold dark:text-white mb-2">Valid Certificates</h3>
+                    <p class="text-gray-600 dark:text-gray-300">Earn certificates recognized by top companies upon course completion.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Featured Courses -->
+    <section class="py-20 bg-gray-50 dark:bg-gray-900">
+        <div class="max-w-7xl mx-auto px-4">
+            <div class="flex justify-between items-end mb-10">
+                <div>
+                    <h2 class="text-3xl font-bold text-gray-900 dark:text-white">Featured Courses</h2>
+                    <p class="text-gray-600 dark:text-gray-400 mt-2">Hand-picked by our experts.</p>
+                </div>
+                <a href="courses.html" class="text-primary font-semibold hover:underline">View All</a>
+            </div>
+            <div id="course-container" class="grid md:grid-cols-3 gap-8">
+                <!-- Javascript will populate this -->
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-gray-900 text-white pt-16 pb-8">
+        <div class="max-w-7xl mx-auto px-4 grid md:grid-cols-4 gap-8">
+            <div>
+                <div class="flex items-center gap-2 mb-4">
+                    <i class="fas fa-graduation-cap text-2xl text-primary"></i>
+                    <span class="font-bold text-xl">EduPro</span>
+                </div>
+                <p class="text-gray-400 text-sm">Empowering learners worldwide with accessible, high-quality education.</p>
+            </div>
+            <div>
+                <h4 class="font-bold mb-4">Company</h4>
+                <ul class="space-y-2 text-gray-400 text-sm">
+                    <li><a href="#" class="hover:text-white">About Us</a></li>
+                    <li><a href="#" class="hover:text-white">Careers</a></li>
+                    <li><a href="#" class="hover:text-white">Blog</a></li>
+                </ul>
+            </div>
+            <div>
+                <h4 class="font-bold mb-4">Support</h4>
+                <ul class="space-y-2 text-gray-400 text-sm">
+                    <li><a href="#" class="hover:text-white">Contact Us</a></li>
+                    <li><a href="#" class="hover:text-white">FAQ</a></li>
+                    <li><a href="#" class="hover:text-white">Terms & Conditions</a></li>
+                </ul>
+            </div>
+            <div>
+                <h4 class="font-bold mb-4">Subscribe</h4>
+                <div class="flex gap-2">
+                    <input type="email" placeholder="Email" class="bg-gray-800 border-none rounded px-3 py-2 text-sm w-full focus:ring-2 focus:ring-primary">
+                    <button class="bg-primary px-4 py-2 rounded text-sm hover:bg-indigo-700">Go</button>
+                </div>
+            </div>
+        </div>
+        <div class="border-t border-gray-800 mt-12 pt-8 text-center text-gray-500 text-sm">
+            &copy; 2025 EduPro LMS. All rights reserved.
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
