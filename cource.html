@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>All Courses - EduPro</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = { darkMode: 'class', theme: { extend: { colors: { primary: '#4F46E5' } } } }
+    </script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body class="bg-gray-50 dark:bg-gray-900 transition-colors duration-300">
+
+    <!-- Navbar -->
+    <nav class="bg-white dark:bg-gray-800 shadow-sm sticky top-0 z-50">
+        <div class="max-w-7xl mx-auto px-4 h-16 flex items-center justify-between">
+            <a href="index.html" class="font-bold text-2xl text-gray-900 dark:text-white"><i class="fas fa-graduation-cap text-primary"></i> EduPro</a>
+            <div class="flex items-center gap-4">
+                <button id="theme-toggle" class="text-gray-500 dark:text-yellow-400"><i class="fas fa-moon dark:hidden"></i><i class="fas fa-sun hidden dark:block"></i></button>
+                <a href="dashboard.html" class="bg-primary text-white px-4 py-2 rounded-md hover:bg-indigo-700">My Dashboard</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <div class="max-w-7xl mx-auto px-4 py-10">
+        <div class="flex flex-col md:flex-row gap-8">
+            
+            <!-- Sidebar Filters -->
+            <aside class="w-full md:w-1/4">
+                <div class="bg-white dark:bg-gray-800 p-6 rounded-xl shadow-sm sticky top-24">
+                    <h3 class="font-bold text-lg dark:text-white mb-4">Search & Filters</h3>
+                    
+                    <!-- Search -->
+                    <div class="mb-6">
+                        <div class="relative">
+                            <input type="text" id="search-input" placeholder="Search courses..." class="w-full pl-10 pr-4 py-2 border rounded-lg dark:bg-gray-700 dark:border-gray-600 dark:text-white focus:outline-none focus:ring-2 focus:ring-primary">
+                            <i class="fas fa-search absolute left-3 top-3 text-gray-400"></i>
+                        </div>
+                    </div>
+
+                    <!-- Categories -->
+                    <div class="mb-6">
+                        <h4 class="font-semibold text-sm text-gray-500 uppercase mb-3">Categories</h4>
+                        <div class="space-y-2">
+                            <label class="flex items-center gap-2 dark:text-gray-300 cursor-pointer">
+                                <input type="checkbox" class="rounded text-primary focus:ring-primary"> Development
+                            </label>
+                            <label class="flex items-center gap-2 dark:text-gray-300 cursor-pointer">
+                                <input type="checkbox" class="rounded text-primary focus:ring-primary"> Design
+                            </label>
+                            <label class="flex items-center gap-2 dark:text-gray-300 cursor-pointer">
+                                <input type="checkbox" class="rounded text-primary focus:ring-primary"> Business
+                            </label>
+                        </div>
+                    </div>
+
+                    <!-- AI Recommendation Widget -->
+                    <div class="mt-8 pt-6 border-t border-gray-200 dark:border-gray-700">
+                        <h4 class="font-bold text-sm text-transparent bg-clip-text bg-gradient-to-r from-indigo-500 to-pink-500 mb-3"><i class="fas fa-robot"></i> AI Recommended</h4>
+                        <div id="ai-recommendations" class="space-y-2">
+                            <!-- Populated by JS -->
+                        </div>
+                    </div>
+                </div>
+            </aside>
+
+            <!-- Course Grid -->
+            <main class="w-full md:w-3/4">
+                <div class="flex justify-between items-center mb-6">
+                    <h1 class="text-2xl font-bold dark:text-white">Explore Courses</h1>
+                    <select class="border rounded-md px-3 py-1 dark:bg-gray-700 dark:text-white dark:border-gray-600">
+                        <option>Most Popular</option>
+                        <option>Newest</option>
+                        <option>Price: Low to High</option>
+                    </select>
+                </div>
+                
+                <div id="course-container" class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+                    <!-- Populated by JS -->
+                </div>
+            </main>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
