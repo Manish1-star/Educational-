@@ -3,96 +3,103 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Classroom | EduPro Learning</title>
+    <title>Classroom | EduPro</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <script>
         tailwind.config = { darkMode: 'class' }
     </script>
+    <style>
+        /* Custom scrollbar for the book section */
+        .book-content::-webkit-scrollbar { width: 8px; }
+        .book-content::-webkit-scrollbar-thumb { background-color: #cbd5e1; border-radius: 4px; }
+        .dark .book-content::-webkit-scrollbar-thumb { background-color: #475569; }
+        
+        /* Book Typography */
+        .book-content h2 { font-size: 1.5rem; font-weight: bold; margin-bottom: 1rem; color: #2563eb; }
+        .book-content p { margin-bottom: 1rem; line-height: 1.8; }
+        .book-content ul { list-style-type: disc; margin-left: 1.5rem; margin-bottom: 1rem; }
+        .book-content code { background: #f1f5f9; padding: 2px 5px; rounded; color: #ef4444; }
+        .dark .book-content code { background: #1e293b; }
+    </style>
 </head>
-<body class="bg-gray-50 text-gray-900 dark:bg-slate-900 dark:text-gray-100 font-sans">
+<body class="bg-gray-50 text-gray-900 dark:bg-slate-900 dark:text-gray-100 font-sans h-screen flex flex-col">
 
     <!-- Navigation -->
-    <nav class="bg-white dark:bg-slate-800 shadow-sm border-b border-gray-200 dark:border-slate-700 sticky top-0 z-50">
-        <div class="max-w-7xl mx-auto px-4 h-16 flex justify-between items-center">
+    <nav class="bg-white dark:bg-slate-800 shadow-sm border-b border-gray-200 dark:border-slate-700 h-16 flex-none z-50">
+        <div class="max-w-7xl mx-auto px-4 h-full flex justify-between items-center">
             <div class="flex items-center gap-4">
                 <a href="index.html" class="text-gray-500 hover:text-blue-600 transition"><i class="fas fa-arrow-left text-xl"></i></a>
                 <div class="h-6 w-px bg-gray-300 dark:bg-slate-600"></div>
-                <h1 class="text-xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-blue-600 to-purple-600">EduPro Classroom</h1>
+                <h1 class="text-lg md:text-xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-blue-600 to-purple-600">EduPro Classroom</h1>
             </div>
-            <div class="flex items-center gap-3">
-                <span class="hidden md:block text-sm text-gray-500">Logged in as Student</span>
-                <div class="w-8 h-8 rounded-full bg-blue-600 flex items-center justify-center text-white font-bold">S</div>
-            </div>
+            <!-- Theme Toggle -->
+            <button id="theme-toggle" class="p-2 rounded-full hover:bg-gray-100 dark:hover:bg-slate-700 transition">
+                <i class="fas fa-moon dark:hidden"></i>
+                <i class="fas fa-sun hidden dark:inline text-yellow-400"></i>
+            </button>
         </div>
     </nav>
 
-    <!-- Classroom Layout -->
-    <div class="max-w-7xl mx-auto p-4 md:p-6 grid lg:grid-cols-3 gap-8">
+    <!-- Main Classroom Layout -->
+    <div class="flex-grow max-w-7xl w-full mx-auto p-4 md:p-6 grid lg:grid-cols-3 gap-6 h-[calc(100vh-64px)]">
         
-        <!-- LEFT: Video Player Section (2/3 width) -->
-        <div class="lg:col-span-2 space-y-4">
+        <!-- LEFT: Learning Area (2/3 width) -->
+        <div class="lg:col-span-2 flex flex-col h-full gap-4">
             
-            <!-- Video Container -->
-            <div id="video-container" class="bg-black rounded-2xl overflow-hidden shadow-2xl aspect-video relative group">
-                <iframe id="video-frame" class="w-full h-full" src="" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+            <!-- TOGGLE BUTTONS (Video vs Book) -->
+            <div class="flex bg-white dark:bg-slate-800 p-1 rounded-xl shadow-sm border border-gray-200 dark:border-slate-700 w-fit">
+                <button onclick="switchMode('video')" id="btn-video" class="px-6 py-2 rounded-lg text-sm font-bold transition flex items-center gap-2 bg-blue-600 text-white">
+                    <i class="fas fa-play-circle"></i> Video Class
+                </button>
+                <button onclick="switchMode('book')" id="btn-book" class="px-6 py-2 rounded-lg text-sm font-bold transition flex items-center gap-2 text-gray-500 hover:text-blue-600 dark:text-gray-400">
+                    <i class="fas fa-book-open"></i> Read Notes
+                </button>
             </div>
 
-            <!-- Video Info -->
-            <div class="bg-white dark:bg-slate-800 p-6 rounded-2xl shadow-sm border border-gray-200 dark:border-slate-700">
-                <div class="flex items-start justify-between">
-                    <div>
-                        <span id="c-category" class="text-xs font-bold text-blue-500 uppercase tracking-wide">Course Category</span>
-                        <h2 id="video-title" class="text-2xl font-bold mt-1 mb-2">Select a Chapter to Start</h2>
-                        <h3 id="c-title" class="text-gray-500 dark:text-gray-400 text-sm font-medium">Full Course Title</h3>
-                    </div>
-                    <button class="bg-gray-100 dark:bg-slate-700 p-2 rounded-full hover:bg-red-50 dark:hover:bg-red-900/30 hover:text-red-500 transition">
-                        <i class="far fa-heart"></i>
-                    </button>
-                </div>
+            <!-- CONTENT CONTAINER -->
+            <div class="flex-grow bg-white dark:bg-slate-800 rounded-2xl shadow-lg border border-gray-200 dark:border-slate-700 overflow-hidden relative">
                 
-                <div class="mt-6 flex items-center gap-4 text-sm border-t border-gray-100 dark:border-slate-700 pt-4">
-                    <div class="flex items-center gap-2">
-                        <img src="https://ui-avatars.com/api/?name=Instructor&background=random" class="w-8 h-8 rounded-full">
-                        <span class="font-bold text-gray-700 dark:text-gray-200" id="c-instructor">Instructor</span>
+                <!-- 1. VIDEO PLAYER -->
+                <div id="video-mode" class="w-full h-full flex flex-col">
+                    <div class="flex-grow bg-black relative">
+                        <iframe id="video-frame" class="w-full h-full absolute inset-0" src="" title="Course Video" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
                     </div>
-                    <div class="h-4 w-px bg-gray-300"></div>
-                    <span class="text-green-500 font-bold"><i class="fas fa-certificate"></i> Certified Course</span>
+                    <div class="p-4 border-t border-gray-200 dark:border-slate-700">
+                        <h2 id="content-title" class="text-xl font-bold">Select a Chapter</h2>
+                    </div>
                 </div>
-            </div>
 
+                <!-- 2. BOOK/TEXT MODE (Hidden by default) -->
+                <div id="book-mode" class="w-full h-full hidden flex-col">
+                    <div class="flex-grow overflow-y-auto p-8 book-content" id="book-content">
+                        <!-- Book text will be injected here by JS -->
+                        <div class="text-center text-gray-500 mt-20">
+                            <i class="fas fa-book-reader text-6xl mb-4 text-blue-200"></i>
+                            <p>Select a chapter to read the notes.</p>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
         </div>
 
         <!-- RIGHT: Syllabus / Playlist (1/3 width) -->
-        <div class="lg:col-span-1">
-            <div class="bg-white dark:bg-slate-800 rounded-2xl shadow-lg border border-gray-200 dark:border-slate-700 flex flex-col h-[600px]">
+        <div class="lg:col-span-1 h-full flex flex-col">
+            <div class="bg-white dark:bg-slate-800 rounded-2xl shadow-lg border border-gray-200 dark:border-slate-700 flex flex-col h-full overflow-hidden">
                 
-                <div class="p-5 border-b border-gray-200 dark:border-slate-700 bg-gray-50 dark:bg-slate-800/50 rounded-t-2xl">
+                <div class="p-5 border-b border-gray-200 dark:border-slate-700 bg-gray-50 dark:bg-slate-800/50">
                     <h3 class="font-bold text-lg flex items-center gap-2">
-                        <i class="fas fa-list-ul text-blue-600"></i> Course Content
+                        <i class="fas fa-list-ul text-blue-600"></i> Course Index
                     </h3>
-                    <p class="text-xs text-gray-500 mt-1">Click on a chapter to play video</p>
+                    <p class="text-xs text-gray-500 mt-1" id="course-name">Loading...</p>
                 </div>
 
                 <!-- Scrollable List -->
-                <div class="overflow-y-auto flex-1 p-4 custom-scrollbar">
-                    <ul id="c-syllabus" class="space-y-3">
-                        <!-- Syllabus items injected by JS -->
-                        <li class="text-center text-gray-500 py-10">
-                            <i class="fas fa-spinner fa-spin mb-2"></i><br>Loading Content...
-                        </li>
+                <div class="overflow-y-auto flex-1 p-2 custom-scrollbar">
+                    <ul id="c-syllabus" class="space-y-2">
+                        <!-- List Items -->
                     </ul>
-                </div>
-
-                <!-- Bottom Status -->
-                <div class="p-4 bg-blue-50 dark:bg-slate-700/50 border-t border-gray-200 dark:border-slate-700 rounded-b-2xl">
-                    <div class="flex justify-between items-center text-sm">
-                        <span class="font-bold text-blue-600">Progress</span>
-                        <span class="text-gray-500">0% Completed</span>
-                    </div>
-                    <div class="w-full bg-gray-200 dark:bg-slate-600 rounded-full h-2 mt-2">
-                        <div class="bg-blue-600 h-2 rounded-full" style="width: 5%"></div>
-                    </div>
                 </div>
 
             </div>
@@ -100,7 +107,6 @@
 
     </div>
 
-    <!-- Link to JS -->
     <script src="script.js"></script>
 </body>
 </html>
